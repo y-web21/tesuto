@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             dummyUsersSeeder::class,
             dummyTagsSeeder::class
-        ],10);
+        ]);
     }
 }
