@@ -16,7 +16,6 @@ class dummyUsersSeeder extends Seeder
      */
     public function run()
     {
-        //
         $now = Time::now();
         DB::table('users')->insert([
             'name' => 'root',
