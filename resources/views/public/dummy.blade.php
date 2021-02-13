@@ -1,7 +1,15 @@
-<ul></ul>
-    <li>this</li>
-    <li>is</li>
-    <li>a</li>
-    <li>dummy</li>
-    <li>page</li>
-</ul>
+@extends('layouts.master')
+@section('title','dummy')
+
+@section('global-nav')
+    @parent
+@endsection
+
+@section('content')
+    dummy
+@endsection
+
+@section('footer')
+    @parent
+@endsection
+

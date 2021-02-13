@@ -38,3 +38,5 @@ Route::get('/agreement'         , [PublicPagesController::class, 'dummy']);
 Route::get('/contact'           , [PublicPagesController::class, 'dummy']);
 Route::get('/site_policy'       , [PublicPagesController::class, 'dummy']);
 Route::get('/privacy_policy'    , [PublicPagesController::class, 'dummy']);
+Route::resource('/article'      , PublicPagesController::class, ['only' => ['index', 'show']]);
+
