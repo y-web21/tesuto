@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Library\Helper;
 
 class PublicPagesController extends Controller
 {
@@ -14,7 +16,8 @@ class PublicPagesController extends Controller
      */
     public function index()
     {
-        return view('public/home');
+        $articles = Article::orderBy('created_at', 'desc')->limit(10)->get();
+        return view('public/home', compact('articles'));
     }
 
     /**
@@ -25,7 +28,15 @@ class PublicPagesController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('public/dummy', ['articles' => Article::findOrFail($id)]);
+        return view('public/dummy', ['articles' => Article::findOrFail($id)]);
+    }
+
+    public function shou()
+    {
+        // $articles = Article::where('create_at', '=', enumTAskState::OPEN)->orWhere('state', '=', enumTAskState::CLOSE)->get();
+        $articles = Article::orderBy('created_at', 'desc')->limit(3)->get();
+        return view('public/dummy', compact('articles'));
     }
 
     public function dummy()

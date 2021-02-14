@@ -38,6 +38,8 @@ Route::get('/agreement'         , [PublicPagesController::class, 'dummy']);
 Route::get('/contact'           , [PublicPagesController::class, 'dummy']);
 Route::get('/site_policy'       , [PublicPagesController::class, 'dummy']);
 Route::get('/privacy_policy'    , [PublicPagesController::class, 'dummy']);
+Route::get('/shou'    , [PublicPagesController::class, 'shou']);
+// Route::get('/article/{id}'      , [PublicPagesController::class, 'show']);
 Route::resource('/article'      , PublicPagesController::class, ['only' => ['index', 'show']]);
 
 Route::get('/faker', function () {

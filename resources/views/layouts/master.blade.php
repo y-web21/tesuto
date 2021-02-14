@@ -27,11 +27,13 @@ if (!isset($footerType)) {
 
     @section('header')
         @include('layouts.header', [ $headerType ])
-        @show
+    @show
 
     @section('global-nav')
     @include('layouts.gnav')
     @show
+
+    {{ request()->path() }}
 
     <div class="container">
         @yield('content')

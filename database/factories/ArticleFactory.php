@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ArticleFactory extends Factory
 {
@@ -21,11 +22,10 @@ class ArticleFactory extends Factory
      */
     public function definition()
     {
-        $authorId = [0,1,2,3,4,5,6,7,11,12];
+        $titlePre = ['記事', 'テキスト', '社会風刺', '公開情報', '新着', '風説の流布', '事件概要'];
         return [
-            'title' => $this->faker->city,
+            'title' => $this->faker->randomElement($titlePre).'-'.$this->faker->randomNumber($nbDigits = 4),
             'content' => $this->faker->realText($maxNbChars = 1000, $indexSize = 2),
-            // 'author' => $this->faker->randomElement($authorId)
             'author' => random_int(0, 20)
         ];
     }
