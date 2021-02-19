@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class PosterPagesController extends Controller
 {
-    const testauthor = 1;
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +20,7 @@ class PosterPagesController extends Controller
      */
     public function index()
     {
-        list($user_id, $user_name) = $this->getUser();
+        list($user_id, $user_name) = Helper::getUser();
 
         // $abc = Article::find(1)->statusName->name;
         // var_dump($abc);
@@ -49,7 +48,7 @@ class PosterPagesController extends Controller
      */
     public function create(Request $request)
     {
-        list($user_id, $user_name) = $this->getUser();
+        list($user_id, $user_name) = Helper::getUser();
 
         $new_article = new Article;
         $new_article->title = $request->title;
@@ -130,28 +129,9 @@ class PosterPagesController extends Controller
 
     public function newPost()
     {
-        list($user_id, $user_name) = $this->getUser();
+        list($user_id, $user_name) = Helper::getUser();
         $statuses = ArticleStatus::all();
         return view('poster/article_new_post', compact('statuses', 'user_id', 'user_name'));
     }
 
-    private function getUser()
-    {
-        // 現在のログインユーザからidを取得する
-        $user_id = random_int(0, 10);
-        $user_id = Helper::id;
-        // $user_id = self::testauthor
-        // $user_name1 = User::where('id', '=', $user_id);
-        // $user_name2 = $user_name1->first();
-        // $user_name3 = $user_name2->toArray();
-        // $user_name4 = $user_name3['name'];
-        try {
-            $user_name = User::where('id', '=', $user_id)->first()->toArray()['name'];
-        } catch (\Throwable $th) {
-            $user_name = '君、誰や。';
-            echo $th->getMessage();
-        }
-
-        return array($user_id, $user_name);
-    }
 }

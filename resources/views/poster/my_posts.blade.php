@@ -7,7 +7,8 @@ $gnavType = -1;
 @section('content')
     <b>your name = {{ $user_name }} , id = {{ $user_id }}</b><br>
     <b>your posts = {{ $articles->count() }}</b><br>
-    <a href="{{ route('post.newPost') }}">新規作成</a>
+    <a href="{{ route('post.new-post') }}">新規作成</a>
+    <a href="{{ route('image.upload-form') }}">イメージアップローダ</a>
     @foreach ($articles as $article)
         <br>
         {{ $article->title }}

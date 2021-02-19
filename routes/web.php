@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicPagesController;
 use App\Http\Controllers\PosterPagesController;
+use App\Http\Controllers\UploadImagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,16 +41,17 @@ Route::get('/contact'           , [PublicPagesController::class, 'dummy']);
 Route::get('/site-policy'       , [PublicPagesController::class, 'dummy']);
 Route::get('/privacy-policy'    , [PublicPagesController::class, 'dummy']);
 Route::get('/shou'              , [PublicPagesController::class, 'shou']);
-// Route::get('/article/{id}'      , [PublicPagesController::class, 'show']);
 Route::resource('/article'      , PublicPagesController::class, ['only' => ['index', 'show']]);
 
-// Route::resource('/post'      , PosterPagesController::class, ['only' => ['index', 'show', 'create', 'store']])->names([
-    //     'create' => 'image.postercolor',
-    //     'store' => 'image.post'
-    // ]);
 Route::resource('/post'         , PosterPagesController::class);
+Route::get('/new-post'          , [PosterPagesController::class, 'newPost'])->name('post.new-post');
 // Route::get('/new'               , function(){return view('poster/article_new_post');})->name('post.new');
-Route::get('/new-post'               , [PosterPagesController::class, 'newPost'])->name('post.newPost');
+
+
+Route::resource('/image'        , UploadImagesController::class)->names([
+    'index' => 'image.upload-form',
+    ]);
+Route::post('/upload'            , [UploadImagesController::class, 'upload'])->name('image.upload');
 
 
 Route::get('/faker', function () {
