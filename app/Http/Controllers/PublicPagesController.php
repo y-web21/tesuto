@@ -17,7 +17,7 @@ class PublicPagesController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at', 'desc')->limit(10)->get();
-        return view('public/home', compact('articles'));
+        return view('public/index', compact('articles'));
     }
 
     /**
@@ -28,7 +28,6 @@ class PublicPagesController extends Controller
      */
     public function show($id)
     {
-        return view('public/dummy', ['articles' => Article::findOrFail($id)]);
         return view('public/dummy', ['articles' => Article::findOrFail($id)]);
     }
 

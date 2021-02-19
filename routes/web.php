@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicPagesController;
+use App\Http\Controllers\PosterPagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,7 @@ Route::get('/home', function () {
 });
 
 // routing to controller
-Route::get('/'                  , [PublicPagesController::class, 'index']);
+Route::get('/'                  , [PublicPagesController::class, 'index'])->name('home');
 Route::get('/news'              , [PublicPagesController::class, 'dummy']);
 Route::get('/category'          , [PublicPagesController::class, 'dummy']);
 Route::get('/ranking'           , [PublicPagesController::class, 'dummy']);
@@ -36,11 +37,20 @@ Route::get('/company'           , [PublicPagesController::class, 'dummy']);
 Route::get('/member'            , [PublicPagesController::class, 'dummy']);
 Route::get('/agreement'         , [PublicPagesController::class, 'dummy']);
 Route::get('/contact'           , [PublicPagesController::class, 'dummy']);
-Route::get('/site_policy'       , [PublicPagesController::class, 'dummy']);
-Route::get('/privacy_policy'    , [PublicPagesController::class, 'dummy']);
-Route::get('/shou'    , [PublicPagesController::class, 'shou']);
+Route::get('/site-policy'       , [PublicPagesController::class, 'dummy']);
+Route::get('/privacy-policy'    , [PublicPagesController::class, 'dummy']);
+Route::get('/shou'              , [PublicPagesController::class, 'shou']);
 // Route::get('/article/{id}'      , [PublicPagesController::class, 'show']);
 Route::resource('/article'      , PublicPagesController::class, ['only' => ['index', 'show']]);
+
+// Route::resource('/post'      , PosterPagesController::class, ['only' => ['index', 'show', 'create', 'store']])->names([
+    //     'create' => 'image.postercolor',
+    //     'store' => 'image.post'
+    // ]);
+Route::resource('/post'         , PosterPagesController::class);
+// Route::get('/new'               , function(){return view('poster/article_new_post');})->name('post.new');
+Route::get('/new-post'               , [PosterPagesController::class, 'newPost'])->name('post.newPost');
+
 
 Route::get('/faker', function () {
     $faker = Faker\Factory::create('ja_JP');

@@ -4,6 +4,14 @@ namespace App\Library;
 
 class Helper
 {
+    const id = 1;
+    public int $variable;
+
+    public function __construct(int $variable = 1)
+    {
+        $this->variable = $variable;
+    }
+
     public static function strlimit($value, $limit = 100, $end = '...')
     {
         if (mb_strlen($value, 'UTF-8') <= $limit) {

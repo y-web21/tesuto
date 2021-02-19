@@ -18,6 +18,9 @@
 if (!isset($headerType)) {
     $headerType = 0;
 }
+if (!isset($gnavType)) {
+    $gnavType = 0;
+}
 if (!isset($footerType)) {
     $footerType = 0;
 }
@@ -30,7 +33,7 @@ if (!isset($footerType)) {
     @show
 
     @section('global-nav')
-    @include('layouts.gnav')
+        @include('layouts.gnav', [ $gnavType ])
     @show
 
     {{ request()->path() }}

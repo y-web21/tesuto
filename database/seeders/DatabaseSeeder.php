@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             dummyUsersSeeder::class,
             dummyTagsSeeder::class,
+            ArticleStatusSeeder::class,
         ]);
 
         // call factory

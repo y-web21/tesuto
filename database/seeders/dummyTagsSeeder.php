@@ -14,7 +14,6 @@ class dummyTagsSeeder extends Seeder
      */
     public function run()
     {
-        //
         $tags = ['戯言','無価値','風説の流布'];
         foreach ($tags as $tag) {
             DB::table('tags')->insert(['name' => $tag]);
