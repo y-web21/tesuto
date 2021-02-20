@@ -16,7 +16,10 @@ class UploadImagesController extends Controller
      */
     public function index()
     {
-        return view('image/upload_form');
+        // $images = UploadImage::where('delete_request', '=', '0')->get()->sortByDesc('id');
+        $images = UploadImage::where('delete_request', '=', '0')->Paginate(2, ['*'], 'view', 1);
+        return view('image/upload_form')
+            ->with('images', $images);
     }
 
     /**
@@ -91,19 +94,25 @@ class UploadImagesController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            // 'name'                  => 'required',
-            'email'                 => 'required|email',
+            // 'name'                  => 'required | email',
+            // 'email'                 => 'required|email',
             // 'password'              => 'required|confirmed',
             // 'password_confirmation' => 'required',
-            'image' => 'required|mimes:jpeg,gif,png',
+            'image' => 'required | mimes:jpeg,gif,png | max:10240',
         ];
 
-        $validator = Validator::make($request->all(), $rules);
+        $message = [
+            'image.required' => '画像ありません',
+            'image.mimes' => 'がぞーを指定しろよ・・・',
+            'image.max' => 'おっきいなぁ',
+        ];
 
+        $validator = Validator::make($request->all(), $rules, $message);
+        // dd($validator->errors());
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
-                ->withInput();
+                ->withInput($request->except('password'));
         } else {
             $newImage = new UploadImage;
             // save to storage/app/public/images
@@ -119,5 +128,12 @@ class UploadImagesController extends Controller
                     'filename' => $newImage->name
                 ]);
         };
+    }
+
+    public function deleteRequest(Request $request){
+        $uploadImage = UploadImage::find($request->id);
+        $uploadImage->delete_request = boolval(1);
+        $uploadImage->save();
+        return redirect()->route('image.upload-form');
     }
 }

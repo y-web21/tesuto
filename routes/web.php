@@ -52,6 +52,7 @@ Route::resource('/image'        , UploadImagesController::class)->names([
     'index' => 'image.upload-form',
     ]);
 Route::post('/upload'            , [UploadImagesController::class, 'upload'])->name('image.upload');
+Route::post('/image/delete' , [UploadImagesController::class, 'deleteRequest'])->name('image.del-req');
 
 
 Route::get('/faker', function () {

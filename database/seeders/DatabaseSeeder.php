@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             dummyUsersSeeder::class,
             dummyTagsSeeder::class,
             ArticleStatusSeeder::class,
+            UploadImageSeeder::class,
         ]);
 
         // call factory

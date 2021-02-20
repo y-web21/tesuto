@@ -17,7 +17,9 @@ class CreateUploadImagesTable extends Migration
             $table->id();
             $table->string('path', 200);
             $table->string('name', 200);
+            $table->string('description', 200)->nullable()->default('無題');
             $table->integer('user_id')->unsigned()->nullable();
+            $table->boolean('delete_request')->default(false);
             $table->timestamps();
         });
     }

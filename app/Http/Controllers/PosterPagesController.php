@@ -27,12 +27,12 @@ class PosterPagesController extends Controller
 
         DB::enableQueryLog();
         $articles = DB::table('articles')
-        ->leftJoin('article_statuses', 'status', '=', 'article_statuses.status_id')
-        ->where('author', '=', $user_id)
-        ->orderBy('articles.updated_at', 'desc')
-        ->limit(999)
-        ->select('articles.*', 'article_statuses.status_name')
-        ->get();
+            ->leftJoin('article_statuses', 'status', '=', 'article_statuses.status_id')
+            ->where('author', '=', $user_id)
+            ->orderBy('articles.updated_at', 'desc')
+            ->limit(999)
+            ->select('articles.*', 'article_statuses.status_name')
+            ->get();
         // dd(DB::getQueryLog());
 
         $article_statuses = ArticleStatus::all();
@@ -54,7 +54,7 @@ class PosterPagesController extends Controller
         $new_article->title = $request->title;
         $new_article->content = $request->content;
         $new_article->author = $user_id;
-        $new_article->status = 1;
+        $new_article->status = $request->status_id;
         $new_article->save();
 
         return redirect('/post');
@@ -133,5 +133,4 @@ class PosterPagesController extends Controller
         $statuses = ArticleStatus::all();
         return view('poster/article_new_post', compact('statuses', 'user_id', 'user_name'));
     }
-
 }
