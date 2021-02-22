@@ -7,6 +7,7 @@
     <input type="submit" value="アップロード">
 </form>
 
+{{ asset('/storage/images/') }}
 
 @foreach ($images as $image)
     <div style="display:inline-block;">

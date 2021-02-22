@@ -4,7 +4,6 @@
 @php
 $headerType = 1;
 @endphp
-<p>HOME</p>
 
 @section('content')
     @foreach ($articles as $article)

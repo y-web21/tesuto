@@ -16,7 +16,7 @@ class PublicPagesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->limit(10)->get();
+        $articles = Article::orderBy('created_at', 'desc')->limit(100)->get();
         return view('public/index', compact('articles'));
     }
 

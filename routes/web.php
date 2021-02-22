@@ -49,9 +49,11 @@ Route::get('/new-post'          , [PosterPagesController::class, 'newPost'])->na
 
 
 Route::resource('/image'        , UploadImagesController::class)->names([
-    'index' => 'image.upload-form',
+    // 'index' => 'image.upload_form',
+    'yandex' => 'image.upload-form',
     ]);
 Route::post('/upload'            , [UploadImagesController::class, 'upload'])->name('image.upload');
+Route::get('/images'            , [UploadImagesController::class, 'index'])->name('image.upload-form');
 Route::post('/image/delete' , [UploadImagesController::class, 'deleteRequest'])->name('image.del-req');
 
 

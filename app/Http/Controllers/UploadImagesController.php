@@ -17,7 +17,7 @@ class UploadImagesController extends Controller
     public function index()
     {
         // $images = UploadImage::where('delete_request', '=', '0')->get()->sortByDesc('id');
-        $images = UploadImage::where('delete_request', '=', '0')->Paginate(2, ['*'], 'view', 1);
+        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(200, ['*'], 'view', 1);
         return view('image/upload_form')
             ->with('images', $images);
     }

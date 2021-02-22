@@ -7,10 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title','page name is not defined')</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script>
-        {{ asset('js/app.js') }} defer
-    </script>
-    <link rel="{{ asset('css/app.css') }}" href="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <noscript>ウェブサイトを正しく表示するにはJavaScriptが必要です。<br>ブラウザの設定をオンにしてからページをリロードしてください。</noscript>
 </head>
 
@@ -24,9 +21,18 @@ if (!isset($gnavType)) {
 if (!isset($footerType)) {
     $footerType = 0;
 }
+
+// ssl 未実装
+// if (empty($_SERVER['HTTPS']))
+// {
+//     header("Location: http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}");
+//     exit;
+// }
+
 @endphp
 
-<body>
+<body class="w-full">
+
 
     @section('header')
         @include('layouts.header', [ $headerType ])
@@ -36,17 +42,22 @@ if (!isset($footerType)) {
         @include('layouts.gnav', [ $gnavType ])
     @show
 
-    {{ request()->path() }}
+    <div class="md:container md:mx-auto container">
+        {{ request()->path() }}
 
-    <div class="container">
-        @yield('content')
+        <main>
+            <div class="container">
+                @yield('content')
+            </div>
+        </main>
+
+
     </div>
 
-    @section('footer')
-        @include('layouts.footer', [ $footerType ])
-    @show
 
-
+            @section('footer')
+                @include('layouts.footer', [ $footerType ])
+            @show
 
 </body>
 
