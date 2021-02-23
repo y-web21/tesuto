@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @php
-$gnavType = -1;
+$disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 @endphp
 
 @section('content')

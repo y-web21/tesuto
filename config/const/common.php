@@ -21,4 +21,19 @@ return [
             'IMAGES' => 10,
         ],
     ],
+    'BLADE' => [
+        'GNAV' => [
+            'DISABLE' => 0,
+            'ENABLE' => 1,
+        ],
+        'HEADER' => [
+            'DISABLE' => -1,
+            'SMALL' => 1,
+            'LARGE' => 2,
+        ],
+        'FOOTER' => [
+            'DISABLE' => 0,
+            'ENABLE' => 1,
+        ],
+    ],
 ];

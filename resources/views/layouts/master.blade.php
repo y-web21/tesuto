@@ -12,14 +12,14 @@
 </head>
 
 @php
-if (!isset($headerType)) {
-    $headerType = 0;
+if (!isset($disp_header)) {
+    $disp_header = config('const.common.BLADE.HEADER.SMALL');
 }
-if (!isset($gnavType)) {
-    $gnavType = 0;
+if (!isset($disp_gnav)) {
+    $disp_gnav = config('const.common.BLADE.GNAV.ENABLE');
 }
-if (!isset($footerType)) {
-    $footerType = 0;
+if (!isset($disp_footer)) {
+    $disp_footer = config('const.common.BLADE.FOOTER.ENABLE');
 }
 
 // ssl 未実装
@@ -35,11 +35,11 @@ if (!isset($footerType)) {
 
     <div class="footer-fixed">
         @section('header')
-            @include('layouts.header', [ $headerType ])
+            @include('layouts.header', [ $disp_header ])
         @show
 
         @section('global-nav')
-            @include('layouts.gnav', [ $gnavType ])
+            @include('layouts.gnav', [ $disp_gnav ])
         @show
 
         <div class="md:container md:mx-auto container">
@@ -55,7 +55,7 @@ if (!isset($footerType)) {
     </div>
 
     @section('footer')
-        @include('layouts.footer', [ $footerType ])
+        @include('layouts.footer', [ $disp_footer ])
     @show
 </body>
 

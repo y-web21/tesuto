@@ -2,7 +2,7 @@
 @section('title', 'home')
 
 @php
-$headerType = 1;
+$disp_header = config('const.common.BLADE.HEADER.LARGE');
 @endphp
 
 @section('content')

@@ -6,10 +6,11 @@ $currentPage = request()->path();
 if (strpos('/', $currentPage) !== false) {
     $currentPage = explode('/', $currentPage)[0];
 }
+$gnav_type = config('const.common.BLADE.GNAV')
 @endphp
 
-@switch($gnavType)
-    @case(0)
+@switch($disp_gnav)
+    @case($gnav_type['ENABLE'])
     {{-- normal --}}
     <nav class="bg-gray-200 sticky top-0 text-black text-center">
         {{-- <nav class="bg-gray-200 " style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"> --}}
