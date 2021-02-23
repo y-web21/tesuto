@@ -1,5 +1,3 @@
-<div class="">
-    <footer class="bg-gray-200">
-        <p class="p-2 text-center text-xs">© 21xx Fictitious companany</p>
-    </footer>
-</div>
+<footer class="bg-gray-200 h-3rem flex justify-center items-center">
+    <p class="text-xs">© 21xx Fictitious companany</p>
+</footer>

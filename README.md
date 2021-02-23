@@ -2,6 +2,7 @@
 
 [laravel_README.md](./laravel_README.md)
 
+Done is better than perfect.
 
 - VirtualBox 6.1.18
 - Vagrant 2.2.14

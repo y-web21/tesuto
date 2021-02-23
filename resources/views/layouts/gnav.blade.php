@@ -11,7 +11,6 @@ if (strpos('/', $currentPage) !== false) {
 @switch($gnavType)
     @case(0)
     {{-- normal --}}
-
     <nav class="bg-gray-200 sticky top-0 text-black text-center">
         {{-- <nav class="bg-gray-200 " style="margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%);"> --}}
         <div class="flex w-full">

@@ -4,9 +4,34 @@
 .h-200px {
     height: 200px;
 }
+.h-100per{
+    height: 100%;
+}
+.h-5vh{
+    height: 5vh;
+}
+.w-100per{
+    width: 100%;
+}
 .w-1000px{
     width: 1000px;
 }
 .w-2000px{
     width: 2000px;
+}
+.w-full-vw{
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+}
+
+/* 画面が小さい場合もフッターを1番下へ */
+.h-3rem {
+    height: 3rem;
+}
+.footer-fixed{
+    min-height: calc(100% - 3rem);
+}
+html,
+body {
+  height: 100%;
 }

@@ -47,4 +47,9 @@ class Helper
         return array($user_id, $user_name);
     }
 
+    public static function getTableColumnName($model){
+        $columns = $model->getConnection()->getSchemaBuilder()->getColumnListing($model->getTable());
+        return $columns;
+    }
+
 }
