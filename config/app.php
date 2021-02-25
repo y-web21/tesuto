@@ -228,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // user definition
         'Helper' => App\Library\Helper::class,
+        'RequestValidator' => App\Library\RequestValidator::class,
     ],
 
 ];

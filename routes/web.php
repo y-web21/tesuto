@@ -50,7 +50,7 @@ Route::post('/new-post'          , [PosterPagesController::class, 'continuePost'
 Route::post('/post/tempsave'             , [PosterPagesController::class, 'saveEditingToSession'])->name('post.tempsave');
 
 
-Route::get('/image/upload'            , [UploadImagesController::class, 'index'])->name('image.upload_form');
+Route::get('/image/upload'            , [UploadImagesController::class, 'index'])->name('image.upload_form')->where('id', '[0-9]+');
 Route::get('/image/select'             , [UploadImagesController::class, 'selectArticleImage'])->name('image.select');
 Route::resource('/image'        , UploadImagesController::class,['except' =>['index', 'store']])->names([
     // 'index' => 'image.upload-form',
