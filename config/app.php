@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -229,6 +230,8 @@ return [
         // user definition
         'Helper' => App\Library\Helper::class,
         'RequestValidator' => App\Library\RequestValidator::class,
+        // composer package
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
