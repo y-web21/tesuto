@@ -44,16 +44,19 @@ Route::get('/shou'              , [PublicPagesController::class, 'shou']);
 Route::resource('/article'      , PublicPagesController::class, ['only' => ['index', 'show']]);
 
 Route::resource('/post'         , PosterPagesController::class);
-Route::get('/new-post'          , [PosterPagesController::class, 'newPost'])->name('post.new-post');
+Route::get('/new-post'          , [PosterPagesController::class, 'newPost'])->name('post.new_post');
+Route::post('/new-post'          , [PosterPagesController::class, 'continuePost'])->name('post.new_post_image');
 // Route::get('/new'               , function(){return view('poster/article_new_post');})->name('post.new');
+Route::post('/post/tempsave'             , [PosterPagesController::class, 'saveEditingToSession'])->name('post.tempsave');
 
 
-Route::resource('/image'        , UploadImagesController::class)->names([
-    // 'index' => 'image.upload_form',
+Route::get('/image/upload'            , [UploadImagesController::class, 'index'])->name('image.upload_form');
+Route::get('/image/select'             , [UploadImagesController::class, 'selectArticleImage'])->name('image.select');
+Route::resource('/image'        , UploadImagesController::class,['except' =>['index', 'store']])->names([
+    // 'index' => 'image.upload-form',
     'yandex' => 'image.upload-form',
     ]);
 Route::post('/upload'           , [UploadImagesController::class, 'upload'])->name('image.upload');
-Route::get('/images'            , [UploadImagesController::class, 'index'])->name('image.upload-form');
 Route::post('/image/delete' , [UploadImagesController::class, 'deleteRequest'])->name('image.del-req');
 
 Route::get('/faker', function () {

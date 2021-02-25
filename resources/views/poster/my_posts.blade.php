@@ -1,13 +1,13 @@
 @extends('layouts.master')
 @php
-$gnavType = -1;
+$disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 @endphp
 
 @section('content')
     <b>your name = {{ $user_name }} , id = {{ $user_id }}</b><br>
     <b>your posts = {{ $articles->count() }}</b><br>
-    <a href="{{ route('post.new-post') }}">新規作成</a>
-    <a href="{{ route('image.upload-form') }}">イメージアップローダ</a>
+    <a href="{{ route('post.new_post') }}">新規作成</a>
+    <a href="{{ route('image.upload_form') }}">イメージアップローダ</a>
 
     <table class="table-fixed my-10">
         <thead>
@@ -51,8 +51,3 @@ $gnavType = -1;
     </table>
 @endsection
 
-@php
-echo url()->previous('/error');
-
-echo url()->previous('/error');
-@endphp

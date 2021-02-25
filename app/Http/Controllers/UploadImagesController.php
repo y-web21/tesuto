@@ -29,10 +29,11 @@ class UploadImagesController extends Controller
             'page.between' => '指定されたページは存在しません',
         ];
 
+        // $validator = validateImagesPagination();
         $validator = Validator::make($target, $rules, $message);
         if ($validator->fails()) {
             return redirect()
-                ->route('image.upload-form')
+                ->route('image.upload_form')
                 ->withErrors($validator);
         }
 
@@ -47,7 +48,7 @@ class UploadImagesController extends Controller
         $validator = Validator::make($target, $rules, $message);
         if ($validator->fails()) {
             return redirect()
-                ->route('image.upload-form')
+                ->route('image.upload_form')
                 ->withErrors($validator);
         }
 
@@ -168,6 +169,47 @@ class UploadImagesController extends Controller
         $uploadImage = UploadImage::find($request->id);
         $uploadImage->delete_request = boolval(1);
         $uploadImage->save();
-        return redirect()->route('image.upload-form');
+        return redirect()->route('image.upload_form');
+    }
+
+    public function selectArticleImage()
+    {
+        $target = [
+            'page' => empty(request('page')) === true ? 1 : request('page'),
+        ];
+
+        $rules = [
+            'page' => 'integer',
+        ];
+
+        $message = [
+            'page.integer' => 'ページ指定が無効です',
+            'page.between' => '指定されたページは存在しません',
+        ];
+
+        $validator = Validator::make($target, $rules, $message);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('image.upload_form')
+                ->withErrors($validator);
+        }
+
+        // $images = UploadImage::where('delete_request', '=', '0')->get()->sortByDesc('id');
+        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page', $target['page']);
+        // $columns = Helper::getTableColumnName(new UploadImage);
+
+        $rules = [
+            'page' => 'integer | between:1,' . $images->lastPage(),
+        ];
+
+        $validator = Validator::make($target, $rules, $message);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('image.upload_form')
+                ->withErrors($validator);
+        }
+
+        return view('image.select_article_image')
+            ->with('images', $images);
     }
 }

@@ -42,6 +42,12 @@ if (!isset($disp_footer)) {
             @include('layouts.gnav', [ $disp_gnav ])
         @show
 
+        {{-- {{ 'session dump = '}}
+        @if (Session::has('editing_title'))
+        {{ Session::get('editing_title') }}
+        {{ Session::get('editing_content') }}
+        @endif --}}
+
         <div class="md:container md:mx-auto container">
             {{-- {{ request()->path() }} --}}
 

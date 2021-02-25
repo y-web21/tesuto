@@ -18,7 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title')->default('no title');
             $table->mediumText('content');
             $table->integer('author')->unsigned()->default(0);
-            $table->string('featured_image_path')->default('/app/default');
+            $table->string('featured_image_id')->default('0');
             $table->timestamps();
         });
     }
