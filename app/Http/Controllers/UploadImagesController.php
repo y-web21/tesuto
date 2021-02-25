@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\UploadImage;
 use App\Library\Helper;
+use App\Library\RequestValidator as RequestValidator;
 
 class UploadImagesController extends Controller
 {
@@ -14,38 +15,14 @@ class UploadImagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function index(Request $request)
     {
-        $target = [
-            'page' => empty(request('page')) === true ? 1 : request('page'),
-        ];
+        // resolveCurrentPageで現在ページは解決する
+        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
 
-        $rules = [
-            'page' => 'integer',
-        ];
+        $validator = RequestValidator::pagination($request, $images->lastpage());
 
-        $message = [
-            'page.integer' => 'ページ指定が無効です',
-            'page.between' => '指定されたページは存在しません',
-        ];
-
-        // $validator = validateImagesPagination();
-        $validator = Validator::make($target, $rules, $message);
-        if ($validator->fails()) {
-            return redirect()
-                ->route('image.upload_form')
-                ->withErrors($validator);
-        }
-
-        // $images = UploadImage::where('delete_request', '=', '0')->get()->sortByDesc('id');
-        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page', $target['page']);
-        // $columns = Helper::getTableColumnName(new UploadImage);
-
-        $rules = [
-            'page' => 'integer | between:1,' . $images->lastPage(),
-        ];
-
-        $validator = Validator::make($target, $rules, $message);
         if ($validator->fails()) {
             return redirect()
                 ->route('image.upload_form')
@@ -127,22 +104,9 @@ class UploadImagesController extends Controller
 
     public function upload(Request $request)
     {
-        $rules = [
-            // 'name'                  => 'required | email',
-            // 'email'                 => 'required|email',
-            // 'password'              => 'required|confirmed',
-            // 'password_confirmation' => 'required',
-            'image' => 'required | mimes:jpeg,gif,png | max:10240',
-        ];
 
-        $message = [
-            'image.required' => '画像がありません',
-            'image.mimes' => 'がぞーを指定しろよ・・・',
-            'image.max' => 'おっきいなぁ',
-        ];
+        $validator = RequestValidator::uploadImage($request->all());
 
-        $validator = Validator::make($request->all(), $rules, $message);
-        // dd($validator->errors());
         if ($validator->fails()) {
             return back()
                 ->withErrors($validator)
@@ -172,40 +136,16 @@ class UploadImagesController extends Controller
         return redirect()->route('image.upload_form');
     }
 
-    public function selectArticleImage()
+    public function selectArticleImage(Request $request)
     {
-        $target = [
-            'page' => empty(request('page')) === true ? 1 : request('page'),
-        ];
 
-        $rules = [
-            'page' => 'integer',
-        ];
+        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
 
-        $message = [
-            'page.integer' => 'ページ指定が無効です',
-            'page.between' => '指定されたページは存在しません',
-        ];
+        $validator = RequestValidator::pagination($request, $images->lastpage());
 
-        $validator = Validator::make($target, $rules, $message);
         if ($validator->fails()) {
             return redirect()
-                ->route('image.upload_form')
-                ->withErrors($validator);
-        }
-
-        // $images = UploadImage::where('delete_request', '=', '0')->get()->sortByDesc('id');
-        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page', $target['page']);
-        // $columns = Helper::getTableColumnName(new UploadImage);
-
-        $rules = [
-            'page' => 'integer | between:1,' . $images->lastPage(),
-        ];
-
-        $validator = Validator::make($target, $rules, $message);
-        if ($validator->fails()) {
-            return redirect()
-                ->route('image.upload_form')
+                ->route('image.select')
                 ->withErrors($validator);
         }
 

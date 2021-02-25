@@ -5,7 +5,15 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
 @section('content')
 
+    @error('page')
+        <p class="text-red-900">
+            {{ $message }}
+        </p>
+    @enderror
+
     @foreach ($images as $image)
+
+
         <div style="display:inline-block;">
             <form action={{ route('post.new_post_image') }} method="post" style="display:inline-block;">
                 @csrf
