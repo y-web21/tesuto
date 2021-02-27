@@ -18,6 +18,9 @@ if (!isset($disp_header)) {
 if (!isset($disp_gnav)) {
     $disp_gnav = config('const.common.BLADE.GNAV.ENABLE');
 }
+if (!isset($disp_lnav)) {
+    $disp_gnav = config('const.common.BLADE.LNAV.DISABLE');
+}
 if (!isset($disp_footer)) {
     $disp_footer = config('const.common.BLADE.FOOTER.ENABLE');
 }
@@ -50,6 +53,10 @@ if (!isset($disp_footer)) {
 
         <div class="md:container md:mx-auto container">
             {{-- {{ request()->path() }} --}}
+
+            {{-- @section('left-nav')
+                @include('layouts.side_nav_left', [ $disp_lnav ])
+            @show --}}
 
             <main>
                 <div class="container">
