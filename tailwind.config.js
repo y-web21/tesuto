@@ -154,10 +154,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    require('tailwindcss'),
-    require('postcss-import'),
-    require('autoprefixer'),
-
-  ],
+  plugins: [],
 }
