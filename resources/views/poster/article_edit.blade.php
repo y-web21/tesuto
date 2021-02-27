@@ -6,7 +6,7 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 @section('content')
     <form>
         @csrf
-        @include('poster.formParts.status_radio',['checked' => $article->status])
+        @include('poster.parts.radio_status',['checked' => $article->status])
         <textarea name="title" id="" cols="30" rows="1" required>{{ $article->title }}</textarea>
         <textarea name="content" id="" cols="200" rows="20" required>{{ $article->content }}</textarea>
         <button type="button" onclick="javascript:history.back();">戻る</button>

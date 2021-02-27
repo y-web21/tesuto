@@ -1,9 +1,17 @@
+/* plain css */
 .h-100px {
     height: 100px;
 }
 .h-200px {
     height: 200px;
 }
+.mh-300px {
+    max-height: 300px;
+}
+.mw-300px{
+    max-width: 300px;
+}
+
 .h-100per{
     height: 100%;
 }

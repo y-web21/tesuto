@@ -17,7 +17,7 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
         <div style="display:inline-block;">
             <form action={{ route('post.new_post_image') }} method="post" style="display:inline-block;">
                 @csrf
-                <figure style="">
+                <figure class="">
                     {{-- <a href="{{ route('post.new_post', $image->id) }}"> --}}
                     <img width=200 src="{{ asset('/storage/images/' . $image->name) }}" alt="{{ $image->description }}">
                     {{-- </a> --}}

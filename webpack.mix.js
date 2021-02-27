@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const del = require('del');
 
 /*
  |--------------------------------------------------------------------------
@@ -13,14 +12,9 @@ const del = require('del');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
+    .postCss('resources/css/app.css', 'public/css/app.css', [
         require("tailwindcss"),
     ]);
-// .copy('resources/css/myStyle.css', 'public/css/style.css');
 
-mix.copy('public/css/app.css', 'public/css/temp.css')
-    .styles(['resources/css/style.css', 'public/css/temp.css'], 'public/css/app.css');
+setTimeout(function () { console.log('please wait a moment.') }, 2000);
 
-setTimeout(function () { console.log('test') }, 2000);
-
-del('public/css/temp.css');
