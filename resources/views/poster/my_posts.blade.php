@@ -6,10 +6,6 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 @section('content')
     <b>your name = {{ $user_name }} , id = {{ $user_id }}</b><br>
     <b>your posts = {{ $articles->count() }}</b><br>
-    <a href="{{ route('post.new_post') }}">新規作成</a>
-    <a href="{{ route('image.upload_form') }}">イメージアップローダ</a>
-
-
 
     <div class="w-full relative mt-4 shadow-2xl rounded my-24 overflow-hidden">
 
