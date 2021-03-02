@@ -1,3 +1,25 @@
+@charset "UTF-8";
+@import url("./style.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* my tailwind classes */
+.btn-blue{
+    @apply uppercase px-6 py-2 rounded border border-blue-600 text-blue-600 max-w-max shadow-sm hover:shadow-lg;
+}
+.btn-yellow{
+    @apply uppercase px-6 py-2 rounded border border-yellow-600 text-yellow-600 max-w-max shadow-sm hover:shadow-lg;
+}
+.btn-red{
+    @apply uppercase px-6 py-2 rounded border border-red-600 text-red-600 max-w-max shadow-sm hover:shadow-lg;
+}
+.btn-gray{
+    @apply uppercase px-6 py-2 rounded border border-gray-600 text-gray-600 max-w-max shadow-sm hover:shadow-lg;
+}
+.btn-green{
+    @apply uppercase px-6 py-2 rounded border border-green-600 text-green-600 max-w-max shadow-sm hover:shadow-lg;
+}
+.form-active-blue{
+    @apply appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:ring focus:border-blue-200;
+}

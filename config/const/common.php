@@ -35,5 +35,9 @@ return [
             'DISABLE' => 0,
             'ENABLE' => 1,
         ],
+        'LNAV' => [
+            'DISABLE' => 0,
+            'POSTER' => 1,
+        ],
     ],
 ];
