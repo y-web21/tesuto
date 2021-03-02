@@ -33,19 +33,17 @@ if (isset($image) && $image->count() !== 0) {
                 <a href="{{ route('post.index') }}"
                     class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">
                     記事一覧</a>
-
             </div>
 
-            <div
-                class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
-                <div class="px-4 pt-4">
+            <div class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
+                <div class="px-4 py-6">
+                    <div>
+                        <h3 class="text-2xl font-semibold">新規作成</h3>
+                        <hr>
+                    </div>
+
                     <form class="flex flex-col space-y-8">
                         @csrf
-
-                        <div>
-                            <h3 class="text-2xl font-semibold">新規作成</h3>
-                            <hr>
-                        </div>
 
                         <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
 
@@ -79,20 +77,22 @@ if (isset($image) && $image->count() !== 0) {
                         <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 gap-4">
                             <div class="flex w-full justify-around">
                                 <input type="hidden" name="image_id" value="{{ $image_id }}">
-                                <div class="flex items-center justyfy-center"><button type="submit" formmethod="get" formaction="{{ route('post.create') }}" class="btn-blue">投稿</button></div>
+                                <div class="flex items-center justyfy-center"><button type="submit" formmethod="get"
+                                        formaction="{{ route('post.create') }}" class="btn-blue">投稿</button></div>
                                 <div class="flex items-center justyfy-center">
                                     <button type="submit" formmethod="post" formaction="{{ route('post.tempsave') }}"
-                                    class="btn-gray">画像を選択</button>
+                                        class="btn-gray">画像を選択</button>
                                 </div>
-                                <div class="flex items-center justyfy-center"><button type="button" onclick="javascript:history.back();" class="btn-gray">戻る</button></div>
+                                <div class="flex items-center justyfy-center"><button type="button"
+                                        onclick="javascript:history.back();" class="btn-gray">戻る</button></div>
                                 {{-- 画像を選択時は、textareaのrequired属性を外す --}}
                             </div>
 
                             <div class="w-full">
                                 @if (isset($image) && $image->count() !== 0)
+                                    <label class="text-xl bg-">投稿画像</label>
                                     <img src="{{ asset('/storage/images/' . $image->name) }}"
                                         alt="{{ $image->description }}" class="w-full mw-300px mx-auto">
-
                                 @endif
 
                             </div>

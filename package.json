@@ -8,7 +8,7 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "build-tailwind": "postcss -c tailwind.config.js resources/css/app.css -o public/css/app.css",
+        "build-tw": "postcss -c tailwind.config.js resources/css/app.css -o public/css/app.css",
         "watch-tailwind": "npm run build-tailwind -- --watch",
         "test": "echo err!! \"but dont be afraid, this is a test.\" && exit 1"
     },
