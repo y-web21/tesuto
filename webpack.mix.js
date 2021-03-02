@@ -15,6 +15,3 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css/app.css', [
         require("tailwindcss"),
     ]);
-
-setTimeout(function () { console.log('please wait a moment.') }, 2000);
-
