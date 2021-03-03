@@ -35,7 +35,7 @@ if (isset($image) && $image->count() !== 0) {
 
                             <div class="w-full">
                                 <label class="text-xl ">タイトル</label>
-                                <input type="text" name="title"
+                                <input id="new_title" type="text" name="title"
                                     value="{{ Session::has('editing_title') ? Session::get('editing_title') : old('title') }}"
                                     placeholder="タイトルを入力してください" class="w-full form-active-blue text-opacity-10">
                             </div>
@@ -49,7 +49,7 @@ if (isset($image) && $image->count() !== 0) {
 
                         <div class="w-full">
                             <label class="text-xl bg-">投稿内容</label>
-                            <textarea name="content" cols="30" rows="10" placeholder="内容を入力してください"
+                            <textarea id="new_content" name="content" cols="30" rows="10" placeholder="内容を入力してください"
                                 class="w-full form-active-blue text-opacity-10">{{ Session::has('editing_content') ? Session::get('editing_content') : old('content') }}</textarea>
                         </div>
 
@@ -63,10 +63,11 @@ if (isset($image) && $image->count() !== 0) {
                         <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4 gap-4">
                             <div class="flex w-full justify-around">
                                 <input type="hidden" name="image_id" value="{{ $image_id }}">
-                                <div class="flex items-center justyfy-center"><button type="submit" formmethod="get"
+                                <div class="flex items-center justyfy-center">
+                                    <button id="btn_submit_new_post" type="submit" formmethod="get"
                                         formaction="{{ route('post.create') }}" class="btn-blue">投稿</button></div>
                                 <div class="flex items-center justyfy-center">
-                                    <button type="submit" formmethod="post" formaction="{{ route('post.tempsave') }}"
+                                    <button id="btn_submit_select_image" type="submit" formmethod="post" formaction="{{ route('post.tempsave') }}"
                                         class="btn-gray">画像を選択</button>
                                 </div>
                                 <div class="flex items-center justyfy-center"><button type="button"
