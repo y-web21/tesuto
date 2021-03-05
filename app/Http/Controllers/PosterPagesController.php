@@ -92,9 +92,16 @@ class PosterPagesController extends Controller
      */
     public function edit($id)
     {
+        empty(request('image')) === true ? $image_name = '' : $image_name = request('image');
+        $image = UploadImage::where('name', '=', $image_name)->first();
+
+        list($user_id, $user_name) = Helper::getUser();
+        $statuses = ArticleStatus::all();
+
         return view('poster/article_edit', [
             'article' => Article::findOrFail($id),
-            'statuses' => ArticleStatus::all()
+            'statuses' => ArticleStatus::all(),
+            'image' => $image,
         ]);
     }
 
@@ -133,6 +140,7 @@ class PosterPagesController extends Controller
     {
         $request->session()->forget('editing_title');
         $request->session()->forget('editing_content');
+        $request->session()->forget('transition_source');
 
         empty(request('image')) === true ? $req_image = '' : $req_image = request('image');
 
@@ -154,10 +162,16 @@ class PosterPagesController extends Controller
         return view('poster/article_new_post', compact('statuses', 'user_id', 'user_name', 'image'));
     }
 
+    public function continueEdit($id)
+    {
+        return $this->edit($id);
+    }
+
     public function saveEditingToSession(Request $request)
     {
         $request->session()->put('editing_title', $request->title);
         request()->session()->put('editing_content', request('content'));
+        request()->session()->put('transition_source', url()->previous());
 
         return redirect()->route('image.select');
     }

@@ -35,7 +35,6 @@ if (!isset($disp_footer)) {
 @endphp
 
 <body>
-
     <div class="footer-fixed">
         @section('header')
             @include('layouts.header', [ $disp_header ])
