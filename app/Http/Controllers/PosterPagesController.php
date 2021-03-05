@@ -92,6 +92,8 @@ class PosterPagesController extends Controller
      */
     public function edit($id)
     {
+        $this->forgetArticleSessionVar();
+
         empty(request('image')) === true ? $image_name = '' : $image_name = request('image');
         $image = UploadImage::where('name', '=', $image_name)->first();
 
@@ -138,9 +140,7 @@ class PosterPagesController extends Controller
 
     public function newPost(Request $request)
     {
-        $request->session()->forget('editing_title');
-        $request->session()->forget('editing_content');
-        $request->session()->forget('transition_source');
+        $this->forgetArticleSessionVar();
 
         empty(request('image')) === true ? $req_image = '' : $req_image = request('image');
 
@@ -174,5 +174,11 @@ class PosterPagesController extends Controller
         request()->session()->put('transition_source', url()->previous());
 
         return redirect()->route('image.select');
+    }
+
+    private function forgetArticleSessionVar(){
+        request()->session()->forget('editing_title');
+        request()->session()->forget('editing_content');
+        request()->session()->forget('transition_source');
     }
 }
