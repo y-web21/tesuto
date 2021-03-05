@@ -35,7 +35,6 @@ if (!isset($disp_footer)) {
 @endphp
 
 <body>
-
     <div class="footer-fixed">
         @section('header')
             @include('layouts.header', [ $disp_header ])
@@ -45,18 +44,7 @@ if (!isset($disp_footer)) {
             @include('layouts.gnav', [ $disp_gnav ])
         @show
 
-        {{-- {{ 'session dump = '}}
-        @if (Session::has('editing_title'))
-        {{ Session::get('editing_title') }}
-        {{ Session::get('editing_content') }}
-        @endif --}}
-
         <div class="md:container md:mx-auto container">
-            {{-- {{ request()->path() }} --}}
-
-            {{-- @section('left-nav')
-                @include('layouts.side_nav_left', [ $disp_lnav ])
-            @show --}}
 
             <main>
                 <div class="container">

@@ -52,4 +52,12 @@ class Helper
         return $columns;
     }
 
+    public static function arrayAppendOrOverwrite ($ary, $key, $val){
+        if (array_key_exists($key, $ary)){
+            $ary[$key] = $val;
+        } else {
+            $ary += array($key => $val);
+        }
+        return $ary;
+    }
 }

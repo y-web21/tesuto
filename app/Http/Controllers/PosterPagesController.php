@@ -90,11 +90,31 @@ class PosterPagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
+        $this->forgetArticleSessionVar($request);
+
+        return $this->editCommon($request, $id);
+    }
+
+    private function editCommon(Request $request, $id){
+
+        $article = Article::findOrFail($id);
+
+        // requestに画像名が存在する場合は、画像名から取得。edit()から飛んできた場合は、articleの画像IDから
+        if (empty(request('image'))) {
+            $image = UploadImage::where('id', '=', $article->featured_image_id)->first();
+        }else{
+            $image = UploadImage::where('name', '=', $request->image)->first();
+        }
+
+        list($user_id, $user_name) = Helper::getUser();
+        $statuses = ArticleStatus::all();
+
         return view('poster/article_edit', [
-            'article' => Article::findOrFail($id),
-            'statuses' => ArticleStatus::all()
+            'article' => $article,
+            'statuses' => ArticleStatus::all(),
+            'image' => $image,
         ]);
     }
 
@@ -111,6 +131,7 @@ class PosterPagesController extends Controller
         $article->title = $request->title;
         $article->content = $request->content;
         $article->status = $request->status_id;
+        $article->featured_image_id = $request->image_id;
         $article->save();
         return redirect('post/');
     }
@@ -131,10 +152,9 @@ class PosterPagesController extends Controller
 
     public function newPost(Request $request)
     {
-        $request->session()->forget('editing_title');
-        $request->session()->forget('editing_content');
+        $this->forgetArticleSessionVar();
 
-        empty(request('image')) === true ? $req_image = '' : $req_image = request('image');
+        empty(request('image')) ? $req_image = '' : $req_image = request('image');
 
         $image = UploadImage::where('name', '=', $req_image)->first();
 
@@ -145,7 +165,7 @@ class PosterPagesController extends Controller
 
     public function continuePost(Request $request)
     {
-        empty(request('image')) === true ? $image_name = '' : $image_name = request('image');
+        empty(request('image')) ? $image_name = '' : $image_name = request('image');
 
         $image = UploadImage::where('name', '=', $image_name)->first();
 
@@ -154,11 +174,25 @@ class PosterPagesController extends Controller
         return view('poster/article_new_post', compact('statuses', 'user_id', 'user_name', 'image'));
     }
 
+    public function continueEdit(Request $request, $id)
+    {
+        return $this->editCommon($request, $id);
+    }
+
     public function saveEditingToSession(Request $request)
     {
         $request->session()->put('editing_title', $request->title);
         request()->session()->put('editing_content', request('content'));
+        request()->session()->put('editing_status', request('status_id'));
+        request()->session()->put('transition_source', url()->previous());
 
         return redirect()->route('image.select');
+    }
+
+    private function forgetArticleSessionVar(){
+        request()->session()->forget('editing_title');
+        request()->session()->forget('editing_content');
+        request()->session()->forget('editing_status');
+        request()->session()->forget('transition_source');
     }
 }
