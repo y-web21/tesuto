@@ -4,14 +4,14 @@
         <ul class="flex text-gray-700">
             {{-- To First Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200">
+                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-chevron-left w-4 h-4">
                     </svg>
                 </li>
             @else
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->url(1) }}" rel="prev" aria-label="@lang('pagination.first')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -26,7 +26,7 @@
 
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer"
+                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none"
                     aria-disabled="true" aria-label="@lang('pagination.previous')">
                     <span aria-hidden="true"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
@@ -35,7 +35,7 @@
                     </svg>
                 </li>
             @else
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
                         aria-label="@lang('pagination.previous')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
@@ -62,11 +62,12 @@
                     @if (is_array($element))
                         @foreach ($element as $page => $url)
                             @if ($page == $paginator->currentPage())
-                                <li class="w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in  rounded-full bg-pink-600 text-white"
+                                <li class="w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in  rounded-full bg-pink-600 text-white pointer-events-none"
                                     aria-current="page"><span>{{ $page }}</span></li>
                             @else
+                            <div class="focus:border-indigo-500"></div>
                                 <li
-                                    class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in  rounded-full">
+                                    class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full hover:text-pink-600">
                                     <a href="{{ $url }}">{{ $page }}</a>
                                 </li>
                             @endif
@@ -77,7 +78,7 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -87,7 +88,7 @@
                     </a>
                 </li>
             @else
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200">
+                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-chevron-right w-4 h-4">
@@ -97,7 +98,7 @@
 
             {{-- To Last Page Link --}}
             @if ($paginator->hasMorePages())
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->url($paginator->lastPage()) }}" rel="next"
                         aria-label="@lang('pagination.last')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
@@ -109,7 +110,7 @@
                     </a>
                 </li>
             @else
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200">
+                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-chevron-right w-4 h-4">
@@ -118,8 +119,4 @@
             @endif
         </ul>
     </nav>
-    @php
-        // dd($paginator);
-        // echo $paginator->currentPage().'  kumakuma';
-    @endphp
 @endif
