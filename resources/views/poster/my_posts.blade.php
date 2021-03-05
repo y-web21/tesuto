@@ -4,8 +4,6 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 @endphp
 
 @section('content')
-    <b>your name = {{ $user_name }} , id = {{ $user_id }}</b><br>
-    <b>your posts = {{ $articles->count() }}</b><br>
 
     <div class="w-full relative mt-4 shadow-2xl rounded my-24 overflow-hidden">
 
