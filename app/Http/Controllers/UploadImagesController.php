@@ -105,7 +105,7 @@ class UploadImagesController extends Controller
     public function upload(Request $request)
     {
 
-        $validator = RequestValidator::uploadImage($request->all());
+        $validator = RequestValidator::uploadImage($request);
 
         if ($validator->fails()) {
             return back()
