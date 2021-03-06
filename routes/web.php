@@ -50,7 +50,6 @@ Route::post('/post/{post}/edit', [PosterPagesController::class, 'continueEdit'])
 
 Route::post('/image/upload'            , [UploadImagesController::class, 'selectArticleImage'])->name('image.upload_select_image');
 Route::get('/image/upload'            , [UploadImagesController::class, 'index'])->name('image.upload_form')->where('id', '[0-9]+');
-Route::get('/image/select'             , [UploadImagesController::class, 'selectArticleImage'])->name('image.select');
 Route::resource('/image'        , UploadImagesController::class,['except' =>['index', 'store']])->names([
     // 'index' => 'image.upload-form',
     'yandex' => 'image.upload-form',
