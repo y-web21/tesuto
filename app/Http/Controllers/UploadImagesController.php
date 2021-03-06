@@ -120,11 +120,8 @@ class UploadImagesController extends Controller
             $newImage->user_id = Helper::getUser()[0];
             // $newImage->user_id = auth()->id();
             $newImage->save();
-            return view('test')
-                ->with([
-                    'msg' => 'upload complete',
-                    'filename' => $newImage->name
-                ]);
+
+            return redirect()->route('image.upload_form');
         };
     }
 
