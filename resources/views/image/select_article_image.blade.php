@@ -5,8 +5,11 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
 @section('content')
 
+@include('poster.parts.layouts')
+
+
     @error('page')
-        <p class="text-red-900">
+        <p class="text-red-600">
             {{ $message }}
         </p>
     @enderror
@@ -27,5 +30,7 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
     @endforeach
 
     {{ $images->links('layouts.paginator.default') }}
+
+    @include('poster.parts.layouts_close')
 
 @endsection

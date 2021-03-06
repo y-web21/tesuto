@@ -79,7 +79,7 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
 
                 <div class="flex items-center justyfy-center">
                     <button id="btn_submit_select_image" type="submit" formmethod="post"
-                        formaction="{{ route('post.tempsave') }}" class="btn-gray">画像を選択</button>
+                        formaction="{{ route('image.upload_select_image') }}" class="btn-gray">画像を選択</button>
                 </div>
                 <div class="flex items-center justyfy-center"><button type="button" onclick="javascript:history.back();"
                         class="btn-gray">戻る</button></div>

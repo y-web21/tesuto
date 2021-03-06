@@ -21,6 +21,7 @@ class PosterPagesController extends Controller
      */
     public function index()
     {
+        Helper::forgetSessionArticleEdit();
         list($user_id, $user_name) = Helper::getUser();
 
         // $abc = Article::find(1)->statusName->name;
@@ -92,7 +93,7 @@ class PosterPagesController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $this->forgetArticleSessionVar($request);
+        Helper::forgetSessionArticleEdit();
 
         return $this->editCommon($request, $id);
     }
@@ -152,7 +153,7 @@ class PosterPagesController extends Controller
 
     public function newPost(Request $request)
     {
-        $this->forgetArticleSessionVar();
+        Helper::forgetSessionArticleEdit();
 
         empty(request('image')) ? $req_image = '' : $req_image = request('image');
 
@@ -177,22 +178,5 @@ class PosterPagesController extends Controller
     public function continueEdit(Request $request, $id)
     {
         return $this->editCommon($request, $id);
-    }
-
-    public function saveEditingToSession(Request $request)
-    {
-        $request->session()->put('editing_title', $request->title);
-        request()->session()->put('editing_content', request('content'));
-        request()->session()->put('editing_status', request('status_id'));
-        request()->session()->put('transition_source', url()->previous());
-
-        return redirect()->route('image.select');
-    }
-
-    private function forgetArticleSessionVar(){
-        request()->session()->forget('editing_title');
-        request()->session()->forget('editing_content');
-        request()->session()->forget('editing_status');
-        request()->session()->forget('transition_source');
     }
 }

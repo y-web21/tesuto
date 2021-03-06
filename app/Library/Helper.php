@@ -60,4 +60,10 @@ class Helper
         }
         return $ary;
     }
+    public static function forgetSessionArticleEdit(){
+        request()->session()->forget('editing_title');
+        request()->session()->forget('editing_content');
+        request()->session()->forget('editing_status');
+        request()->session()->forget('transition_source');
+    }
 }
