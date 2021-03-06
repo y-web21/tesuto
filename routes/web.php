@@ -45,6 +45,8 @@ Route::resource('/article'      , PublicPagesController::class, ['only' => ['ind
 
 Route::resource('/post'         , PosterPagesController::class);
 Route::get('/new-post'          , [PosterPagesController::class, 'newPost'])->name('post.new_post');
+
+// session('transition_source')による遷移
 Route::post('/new-post', [PosterPagesController::class, 'continuePost'])->name('post.continue_new_post');
 Route::post('/post/{post}/edit', [PosterPagesController::class, 'continueEdit'])->name('post.edit_continue_post');
 
