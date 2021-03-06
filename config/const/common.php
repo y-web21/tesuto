@@ -27,7 +27,7 @@ return [
             'ENABLE' => 1,
         ],
         'HEADER' => [
-            'DISABLE' => -1,
+            'NONE' => -1,
             'SMALL' => 1,
             'LARGE' => 2,
         ],

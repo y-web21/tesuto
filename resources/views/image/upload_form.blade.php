@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @php
 $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
-// $disp_header = config('const.common.BLADE.HEADER.DISABLE');
+// $disp_header = config('const.common.BLADE.HEADER.NONE');
 @endphp
 
 

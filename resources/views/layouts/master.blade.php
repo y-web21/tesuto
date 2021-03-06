@@ -18,9 +18,6 @@ if (!isset($disp_header)) {
 if (!isset($disp_gnav)) {
     $disp_gnav = config('const.common.BLADE.GNAV.ENABLE');
 }
-if (!isset($disp_lnav)) {
-    $disp_gnav = config('const.common.BLADE.LNAV.DISABLE');
-}
 if (!isset($disp_footer)) {
     $disp_footer = config('const.common.BLADE.FOOTER.ENABLE');
 }
