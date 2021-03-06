@@ -14,6 +14,9 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
         <form class="p-5 lg:flex items-center" action="{{ route('image.upload') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="m-4 lg:w-full">
+                <input type="text" name="title"
+                value="{{ old('title') }}"
+                placeholder="画像タイトルを入力してください" class="w-full form-active-blue text-opacity-10 hidden">
             </div>
             <div class="m-4 lg:w-full">
                 <input class="cursor-pointer" type="file" name="image" accept="image/png, image/jpeg, image/png, image/gif">
@@ -35,7 +38,7 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
     <div class="px-4 py-6">
 
         <div>
-            <h3 class="text-2xl font-semibold">画像一覧</h3>
+            <h2 class="text-2xl font-semibold">画像一覧</h2>
             <hr>
         </div>
 
@@ -68,9 +71,9 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
                         <!-- Card Content -->
                         <div class="p-4 w-full">
-                            <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{ $image->description }}</h3>
+                            {{-- <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{ $image->description }}</h3> --}}
                             <p class="text-justify">{{ $image->updated_at }}</p>
-                            <div class="mt-5">
+                            <div class="mt-3">
                                 <form action={{ route('image.del-req') }} method="post" style="display:inline-block;">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $image->id }}">
@@ -81,23 +84,22 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
                     </div>
 
                     @if ($counter % 3 === 2)
-            </div>
-            @endif
+                        </div>
+                    @endif
 
-            @php
-                $counter++;
-            @endphp
-            @endforeach
+                    @php
+                        $counter++;
+                    @endphp
+                @endforeach
 
-            @if ($counter % 3 !== 2)
-                @for ($i = 0; $i <= $counter % 3; $i++)
-                    <div class="lg:m-4 my-12 w-full">
+                @if ($counter % 3 !== 2)
+                    @for ($i = 0; $i <= $counter % 3; $i++)
+                        <div class="lg:m-4 my-12 w-full"></div>
+                    @endfor
                     </div>
-                @endfor
+                @endif
+            </div>
         </div>
-        @endif
-    </div>
-    </div>
     </div>
 
     {{ $images->links('layouts.paginator.default') }}

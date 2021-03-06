@@ -26,7 +26,7 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
 
 <div class="px-4 py-6">
     <div>
-        <h3 class="text-2xl font-semibold">{{ $mode === 'edit' ? '編集' : '新規作成' }}</h3>
+        <h2 class="text-2xl font-semibold">{{ $mode === 'edit' ? '編集' : '新規作成' }}</h2>
         <hr>
     </div>
 

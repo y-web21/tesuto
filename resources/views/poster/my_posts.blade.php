@@ -13,6 +13,12 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
             <div class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
 
+
+            <div>
+                <h2 class="text-2xl font-semibold">投稿一覧</h2>
+                <hr>
+            </div>
+
     <table class="table-fixed my-10">
         <thead>
             <tr class="">
