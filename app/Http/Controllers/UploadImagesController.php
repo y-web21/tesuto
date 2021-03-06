@@ -104,7 +104,6 @@ class UploadImagesController extends Controller
 
     public function upload(Request $request)
     {
-
         $validator = RequestValidator::uploadImage($request);
 
         if ($validator->fails()) {
@@ -135,6 +134,7 @@ class UploadImagesController extends Controller
 
     public function selectArticleImage(Request $request)
     {
+        $this->saveEditingToSession($request);
 
         $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
 
@@ -142,11 +142,21 @@ class UploadImagesController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('image.select')
+                ->route('image.upload_form')
                 ->withErrors($validator);
         }
 
-        return view('image.select_article_image')
+        return view('image.upload_form')
             ->with('images', $images);
+    }
+
+    private function saveEditingToSession(Request $request)
+    {
+        $request->session()->put('editing_title', $request->title);
+        request()->session()->put('editing_content', request('content'));
+        request()->session()->put('editing_status', request('status_id'));
+        request()->session()->put('transition_source', url()->previous());
+
+        return redirect()->route('image.upload_form');
     }
 }

@@ -7,7 +7,6 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
 @section('content')
 
-
     @include('poster.parts.layouts')
 
     <div class="bg-gray-400 sticky top-0 text-black text-center w-full mb-6 z-40">
@@ -22,7 +21,7 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
                 <input class="cursor-pointer" type="file" name="image" accept="image/png, image/jpeg, image/png, image/gif">
                 {{-- <input type="file" name="image" accept="image/*"> --}}
             </div>
-            <div class="m-4  lg:w-full">
+            <div class="m-4 lg:w-full">
                 <button type="submit" class="btn-white">アップロード</button>
             </div>
             <div class="m-4 lg:w-full text-red-600">
@@ -74,6 +73,18 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
                             {{-- <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{ $image->description }}</h3> --}}
                             <p class="text-justify">{{ $image->updated_at }}</p>
                             <div class="mt-3">
+                                @if (Session::has('editing_status'))
+                                <div style="display:inline-block;">
+                                    <form action={{ session('transition_source') }} method="post" style="display:inline-block;">
+                                        @csrf
+                                        <input type="hidden" name="image" value="{{ $image->name }}">
+                                        <button type="submit" class="btn-yellow">選択</button>
+                                    </form>
+                                </div>
+
+                                @else
+
+                                @endif
                                 <form action={{ route('image.del-req') }} method="post" style="display:inline-block;">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $image->id }}">
@@ -105,6 +116,5 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
     {{ $images->links('layouts.paginator.default') }}
 
     @include('poster.parts.layouts_close')
-
 
 @endsection

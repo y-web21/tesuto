@@ -47,12 +47,9 @@ Route::resource('/post'         , PosterPagesController::class);
 Route::get('/new-post'          , [PosterPagesController::class, 'newPost'])->name('post.new_post');
 Route::post('/new-post', [PosterPagesController::class, 'continuePost'])->name('post.continue_new_post');
 Route::post('/post/{post}/edit', [PosterPagesController::class, 'continueEdit'])->name('post.edit_continue_post');
-// Route::get('/new'               , function(){return view('poster/article_new_post');})->name('post.new');
-Route::post('/post/tempsave'             , [PosterPagesController::class, 'saveEditingToSession'])->name('post.tempsave');
 
-
+Route::post('/image/upload'            , [UploadImagesController::class, 'selectArticleImage'])->name('image.upload_select_image');
 Route::get('/image/upload'            , [UploadImagesController::class, 'index'])->name('image.upload_form')->where('id', '[0-9]+');
-Route::get('/image/select'             , [UploadImagesController::class, 'selectArticleImage'])->name('image.select');
 Route::resource('/image'        , UploadImagesController::class,['except' =>['index', 'store']])->names([
     // 'index' => 'image.upload-form',
     'yandex' => 'image.upload-form',
