@@ -49,4 +49,8 @@ class Article extends Model
     {
         return $this->hasOne(ArticleStatus::class, 'status_id', 'status');
     }
+
+    public function scopePublish($query, int $status = 1){
+        return $query->where('status', '=', $status);
+    }
 }

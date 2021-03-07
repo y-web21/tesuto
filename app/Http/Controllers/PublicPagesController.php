@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Library\Helper;
+use Illuminate\Support\Facades\DB;
 
 class PublicPagesController extends Controller
 {
@@ -16,8 +17,9 @@ class PublicPagesController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->limit(100)->get();
-        return view('public/index', compact('articles'));
+        $articles = Article::Publish()->orderBy('created_at', 'desc')->offset(1)->limit(30)->get();
+        $top_news = Article::Publish()->orderBy('created_at', 'desc')->first();
+        return view('public/index', compact('articles', 'top_news'));
     }
 
     /**
