@@ -30,7 +30,7 @@ class PublicPagesController extends Controller
      */
     public function show($id)
     {
-        return view('public/dummy', ['articles' => Article::findOrFail($id)]);
+        return view('public/show_article', ['article' => Article::findOrFail($id)]);
     }
 
     public function shou()

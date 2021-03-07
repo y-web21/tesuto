@@ -11,6 +11,12 @@
 .mh-300px {
     max-height: 300px;
 }
+.mh-400px {
+    max-height: 400px;
+}
+.mh-500px {
+    max-height: 500px;
+}
 .mw-300px{
     max-width: 300px;
 }
