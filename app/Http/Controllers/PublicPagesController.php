@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Library\Helper;
 use Illuminate\Support\Facades\DB;
+use App\Models\ViewLog;
+
 
 class PublicPagesController extends Controller
 {
@@ -30,6 +32,7 @@ class PublicPagesController extends Controller
      */
     public function show($id)
     {
+        ViewLog::createViewLog($id, 60);
         return view('public/show_article', ['article' => Article::findOrFail($id)]);
     }
 
