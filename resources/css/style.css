@@ -1,4 +1,7 @@
 /* plain css */
+.h-50px {
+    height: 50px;
+}
 .h-100px {
     height: 100px;
 }
@@ -41,6 +44,11 @@
 .w-full-vw{
     width: 100vw;
     margin-left: calc(50% - 50vw);
+}
+
+.rank-image{
+    width: 75px;
+    height: 75px;
 }
 
 /* 画面が小さい場合もフッターを1番下へ */

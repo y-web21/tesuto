@@ -26,7 +26,8 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->randomElement($titlePre).'-'.$this->faker->randomNumber($nbDigits = 4),
             'content' => $this->faker->realText($maxNbChars = 1000, $indexSize = 2),
-            'author' => random_int(0, 4)
+            'author' => random_int(0, 4),
+            'status' => random_int(0, 4),
         ];
     }
 }
