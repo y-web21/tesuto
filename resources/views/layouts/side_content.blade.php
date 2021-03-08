@@ -1,5 +1,5 @@
 <div>
-    <aside class="bg-white border-2 border-gray-300 rounded-md tracking-normal break-all shadow-lg w-full h-100per">
+    <aside class="bg-white border-2 border-gray-300 rounded-md tracking-normal break-all shadow-md w-full h-100per">
         <div class="border-b-2 box-border border-blue-400 mb-2 p-4">
             <h2 class="font-semibold text-lg">アクセスランキング</h2>
         </div>
@@ -8,13 +8,13 @@
                 $counter = 1;
             @endphp
             @foreach ($articles as $article)
-                <a class="flex justify-between w-full py-3"
+                <a class="flex justify-between w-full py-3 hover:opacity-70"
                     href={{ route('article.show', ['article' => $article->id]) }}>
-                    <p class="my-auto text-4xl mr-1">{{ $counter }}</p>
+                    <p class="my-auto text-4xl mx-1">{{ $counter }}</p>
                     <div class=" w-full">
                         @if ($article->uploadImage === null)
-                            <img class="rounded-md border-gray-300 object-cover rank-image mx-auto"
-                                alt="no_image" src="{{ asset('storage/images/no_image.png') }}">
+                            <img class="rounded-md border-gray-300 object-cover rank-image mx-auto" alt="no_image"
+                                src="{{ asset('storage/images/no_image.png') }}">
                         @else
                             <img class="rounded-md border-gray-300 object-cover rank-image mx-auto"
                                 alt="{{ $article->uploadImage->description }}"
