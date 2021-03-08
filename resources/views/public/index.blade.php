@@ -13,7 +13,7 @@
 
             <section class="lg:grid lg:grid-cols-3 gap-4 w-full">
                 <div
-                    class="lg:col-span-2 bg-white border-2 border-gray-300 rounded-md tracking-wide break-all shadow-lg w-full p-4 h-100per">
+                    class="lg:col-span-2 bg-white border-2 border-gray-300 rounded-md tracking-wide break-all shadow-md w-full p-4 h-100per hover:bg-gray-100 hover:shadow-lg">
                     @if ($top_news !== null)
                         <a class="flex flex-wrap justify-between"
                             href={{ route('article.show', ['article' => $top_news->id]) }}>
@@ -24,7 +24,7 @@
                                 <p class="text-sm ml-auto mt-auto">{{ $top_news->created_at }}</p>
                             </div>
                             @if ($top_news->uploadImage === null)
-                                <img alt="no_image" class="rounded-md border-2 border-gray-300 object-cover w-1/3 h-200px"
+                                <img alt="no_image" class="rounded-md border-2 border-gray-300 object-cover w-1/3 h-200px bg-white"
                                     src=" {{ asset('storage/images/no_image.png') }}">
                             @else
                                 <img alt="{{ $top_news->uploadImage->description }}"
@@ -37,14 +37,15 @@
                     @endif
                 </div>
                 <div
-                    class="lg:col-span-1 bg-white border-2 border-gray-300 rounded-md tracking-wide shadow-lg p-5 mt-10 lg:mt-0 h-100per">
+                    class="lg:col-span-1 bg-white border-2 border-gray-300 rounded-md tracking-wide shadow-md p-5 mt-10 lg:mt-0 h-100per">
                     {{ 'void' }}
                 </div>
             </section>
 
+            <!-- article cards -->
             <section class="grid grid-cols-1 lg:grid-cols-2 gap-7 w-full mt-10">
                 @foreach ($articles as $article)
-                    <div class="bg-white border-2 border-gray-300 rounded-md tracking-wide break-all shadow-lg w-full p-4">
+                    <div class="bg-white border-2 border-gray-300 rounded-md tracking-wide break-all shadow-md w-full p-4 hover:bg-gray-100 hover:shadow-lg">
                         <a class="flex flex-wrap justify-between"
                             href={{ route('article.show', ['article' => $article->id]) }}>
                             <div class="flex flex-col px-3 w-2/3">
@@ -54,7 +55,7 @@
                                 <p class="text-sm ml-auto mt-auto">{{ $article->created_at }}</p>
                             </div>
                             @if ($article->uploadImage === null)
-                                <img alt="no_image" class="rounded-md border-2 border-gray-300 object-contain w-1/3 h-150px"
+                                <img alt="no_image" class="rounded-md border-2 border-gray-300 object-contain w-1/3 h-150px bg-white"
                                     src=" {{ asset('storage/images/no_image.png') }}">
                             @else
                                 <img alt="{{ $article->uploadImage->description }}"
@@ -65,8 +66,8 @@
                     </div>
                 @endforeach
             </section>
-
         </div>
+
         <div class="col-span-12 xl:col-span-3 mt-10">
             @include('layouts.side_content')
         </div>
