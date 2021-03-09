@@ -42,7 +42,8 @@
         },
         "files": [
             "app/Library/Helper.php",
-            "app/Library/RequestValidator.php"
+            "app/Library/RequestValidator.php",
+            "app/Library/Covid19Api.php"
         ]
     },
     "autoload-dev": {
