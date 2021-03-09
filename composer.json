@@ -43,7 +43,7 @@
         "files": [
             "app/Library/Helper.php",
             "app/Library/RequestValidator.php",
-            "app/Library/Covid19Api.php"
+            "app/Library/Covid19JpApi.php"
         ]
     },
     "autoload-dev": {
