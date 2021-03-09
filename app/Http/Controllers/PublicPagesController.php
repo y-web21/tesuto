@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Library\Helper;
-use Illuminate\Support\Facades\DB;
 use App\Models\ViewLog;
-
-
 class PublicPagesController extends Controller
 {
 
@@ -21,7 +18,9 @@ class PublicPagesController extends Controller
     {
         $articles = Article::Publish()->orderBy('created_at', 'desc')->offset(1)->limit(30)->get();
         $top_news = Article::Publish()->orderBy('created_at', 'desc')->first();
-        return view('public/index', compact('articles', 'top_news'));
+        $ranking = ViewLog::getRankingData();
+
+        return view('public/index', compact('articles', 'top_news', 'ranking'));
     }
 
     /**
