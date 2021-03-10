@@ -17,8 +17,9 @@
                 <p class="text-sm text-gray-800 text-right">{{ $article->created_at }}</p>
             </div>
         </header>
-        <div class="p-8">
+        <div class="p-8 w-full h-100per">
             <p class="text-gray-800">{{ $article->content }}</p>
+            <p class="pt-8 text-right">執筆者 {{ $article->user->name }}</p>
         </div>
     </article>
 
