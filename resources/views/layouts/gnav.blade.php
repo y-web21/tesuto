@@ -1,6 +1,6 @@
 @php
 $dum = 'ログイン';
-$navList = [['HOME', '/'], ['NEWS', '/news'], ['CATEGORY', '/category'], ['RANKING', '/ranking'], ['ABOUT', '/about'], ['コンスタンティン', '/contact'], ['faker', '/faker'], ['記事', '/article'], ['SHOU', '/shou'], ['我が投稿', '/post']];
+$navList = [['HOME', '/'], ['NEWS', '/news'], ['RANKING', '/ranking'], ['ABOUT', '/about'], ['COVID-19', '/contact'], ['我が投稿', '/post']];
 $navListR = [['デバッグ', '/edit'], ['ユーザー登録', '/register'], [$dum, '/login']];
 $currentPage = request()->path();
 if (strpos('/', $currentPage) !== false) {
